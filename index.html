@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Post Studio — GPT + Gemini</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <h1>Post Studio</h1>
+        <p>GPT генерирует тексты, Gemini создает изображения для публикаций.</p>
+      </div>
+      <div class="header-actions">
+        <button id="resetStorage" class="ghost">Сбросить данные</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel">
+        <h2>GPT чат → генерация постов</h2>
+        <div class="chat">
+          <div id="chatLog" class="chat-log"></div>
+          <div class="chat-controls">
+            <textarea id="chatPrompt" rows="3" placeholder="Опишите тему, тон и аудиторию постов..."></textarea>
+            <div class="chat-meta">
+              <label>
+                Кол-во постов
+                <input id="postCount" type="number" min="1" max="20" value="5" />
+              </label>
+              <button id="generatePosts">Сгенерировать</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Библиотека постов</h2>
+          <div class="filters">
+            <label>
+              <input type="checkbox" id="showFavorites" />
+              Только избранные
+            </label>
+          </div>
+        </div>
+        <div id="postsGrid" class="posts-grid"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Gemini → картинки к постам</h2>
+        <div class="gemini-controls">
+          <p>Выберите посты, нажмите генерацию и получите изображения, привязанные к каждому посту.</p>
+          <button id="generateImages">Сгенерировать картинки для выбранных</button>
+          <div id="imageStatus" class="status"></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Настройки (боты и паблики)</h2>
+        <div class="settings">
+          <div class="settings-column">
+            <h3>Боты</h3>
+            <div class="inline-form">
+              <input id="botName" type="text" placeholder="Название бота" />
+              <button id="addBot">Добавить</button>
+            </div>
+            <ul id="botList" class="settings-list"></ul>
+          </div>
+          <div class="settings-column">
+            <h3>Паблики / каналы</h3>
+            <div class="inline-form">
+              <input id="channelName" type="text" placeholder="Название канала" />
+              <button id="addChannel">Добавить</button>
+            </div>
+            <ul id="channelList" class="settings-list"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Публикация избранных постов</h2>
+        <div class="publish">
+          <div class="publish-controls">
+            <label>
+              Бот
+              <select id="publishBot"></select>
+            </label>
+            <label>
+              Канал
+              <select id="publishChannel"></select>
+            </label>
+            <button id="queuePosts">Отправить выбранные</button>
+          </div>
+          <div id="publishLog" class="status"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Локальный прототип: используется имитация GPT/Gemini, данные хранятся в браузере.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
